@@ -1,7 +1,6 @@
 # course410-2024
 Bigdata Distributed Processing System
 
-## Apache Spark
 
 <details open>
   <summary>  <b>Table of Contents</b> </summary>
