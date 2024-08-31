@@ -1,0 +1,1 @@
+Big data is processed by Hadoop

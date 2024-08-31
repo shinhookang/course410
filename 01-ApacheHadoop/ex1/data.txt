@@ -1,0 +1,5 @@
+Hadoop is great
+Hadoop is open-source
+MapReduce is a programming model
+Hadoop uses MapReduce
+Big data is processed by Hadoop

@@ -1,0 +1,2 @@
+Hadoop is great
+Hadoop is open-source
