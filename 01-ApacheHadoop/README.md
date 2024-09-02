@@ -39,13 +39,13 @@ export HADOOP_HOME=/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/c
 export PATH=$PATH:$HADOOP_HOME/bin
 ```
 
-5. Try the following:
+5. Try the following
 ```bash
 source ~/.zshrc
 ls $HADOOP_HOME -d 
 ```
 
-For Linux, use `ls $HADOOP_HOME -l | grep '^d'` intead
+For Linux users, use `ls $HADOOP_HOME -l | grep '^d'` instead
 
 You will see the following subdirectories of the Hadoop distribution. 
 
@@ -126,7 +126,13 @@ Let's try a mapreduce example.
     ```
     <br>
 
-2. Setup passphraseless ssh
+    For Linux users, set `JAVA_HOME` variable in `$HADOOP_HOME/etc/hadoop/hadoop-env.sh`.
+    e.g., 
+    ```bash
+    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    ```
+
+1. Setup passphraseless ssh
    
     Check if this work, `ssh localhost`
     If not, then execute the following commands.
@@ -138,22 +144,29 @@ Let's try a mapreduce example.
 
     For Mac users, turn on `Remote Login` in `System Preferences-> Sharing`.
     <br>
+    For Linux users, start `ssh` service.
+    ```
+    sudo apt remove openssh-server
+    sudo apt install openssh-server
+    sudo service ssh start
+    sudo service ssh status
+    ```
 
-3. Format the file system `hdfs namenode`
+2. Format the file system `hdfs namenode`
 <br>
-4. Start NameNode deamon and DataNode deamon `$HADOOP_HOME/sbin/start-dfs.sh`
+1. Start NameNode deamon and DataNode deamon `$HADOOP_HOME/sbin/start-dfs.sh`
 <br>
-5. Check the Web interfaces http://localhost:9870 for NameNode and http://localhost:9864 for DataNode.
+1. Check the Web interfaces http://localhost:9870 for NameNode and http://localhost:9864 for DataNode.
 <br>
 
-6. Make the HDFS directories required to execute MapReduce jobs
+1. Make the HDFS directories required to execute MapReduce jobs
     ``` bash 
     hdfs dfs -mkdir -p /user/pepc
     ```
     where `pepc` is a username; and `hdfs dfs` is the File System (FS) shell when HDFS is being used. Type `hdfs dfs -help` if you want to see more about the shell command. 
     <br>
 
-7. Create three textfiles under `ex2` directory:
+2. Create three textfiles under `ex2` directory:
    ```bash
    mkdir ex2
    ```
@@ -173,7 +186,7 @@ Let's try a mapreduce example.
     Big data is processed by Hadoop
     ```
 
-8. Copy the input files into the distributed filesystem
+3. Copy the input files into the distributed filesystem
     ```bash 
     cd ex2
     hdfs dfs -mkdir input
@@ -184,12 +197,12 @@ Let's try a mapreduce example.
     hdfs dfs -ls input
     ```
 
-9. Run the wordcount example
+4. Run the wordcount example
     ```bash
     hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.0.jar wordcount input output
     ```
 
-10. View the output file on the distributed system
+5.  View the output file on the distributed system
     ```bash
     hdfs dfs -cat output/part-r-00000
     ```
@@ -215,16 +228,20 @@ Let's try a mapreduce example.
     hdfs dfs -get output output
     ```
 
-11. Delete the output files on the distributed system
+6.  Delete the output files on the distributed system
     ```bash
     hdfs dfs -rm -r output
     ```
 
-12. Stop the deamon
+7.  Stop the deamon
     ```bash
     $HADOOP_HOME/sbin/stop-dfs.sh
     ```
-
+    
+    For Linux users, stop `ssh` service.
+    ```bash 
+    sudo service ssh stop
+    ```
 
 ## Reference 
 
