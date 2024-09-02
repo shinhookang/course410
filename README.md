@@ -8,7 +8,7 @@
 <details open>
   <summary>  <b>Table of Contents</b> </summary>
   <ol start="1.">
-    <!-- <li> <a href="./00-Environment/">Setup Development Environment</a> </li> -->
+    <li> <a href="./00-Environment/">Setup Development Environment</a> </li>
     <li> <a href="./01-ApacheHadoop/">Apache Hadoop</a> </li>
     <li> <a href="./02-ApacheSpark/">Apache Spark</a> </li>
   </ol>

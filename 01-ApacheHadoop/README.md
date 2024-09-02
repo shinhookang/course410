@@ -1,11 +1,6 @@
 # Apache Hadoop
 
-<!-- Create a virtual environment. `python -m venv .venv`
-
-Activate the virtual environment. `source .venv/bin/activate`
-
-Deactivate the virtual environment. `deactivate` -->
-
+ 
 ## Install 
 
 1. Download the release hadoop-3.4.0.targz from https://hadoop.apache.org 
@@ -44,11 +39,13 @@ export HADOOP_HOME=/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/c
 export PATH=$PATH:$HADOOP_HOME/bin
 ```
 
-5. Try the following
+5. Try the following:
 ```bash
 source ~/.zshrc
 ls $HADOOP_HOME -d 
 ```
+
+For Linux, use `ls $HADOOP_HOME -l | grep '^d'` intead
 
 You will see the following subdirectories of the Hadoop distribution. 
 
