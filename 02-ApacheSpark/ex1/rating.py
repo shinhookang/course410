@@ -4,7 +4,11 @@ import collections
 conf = SparkConf().setMaster("local").setAppName("RatingsHistogram")
 sc = SparkContext(conf = conf)
 
-srcdir = '/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/code/course410-2024/02-ApacheSpark/ex1/'
+import os
+os.getcwd()
+
+srcdir = '/Users/Shinhoo/Teaching/410-BigdataDisbributedProcessingSystem/code/course410/02-ApacheSpark/ex1/'
+# srcdir = '/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/code/course410-2024/02-ApacheSpark/ex1/'
 rdd = sc.textFile((srcdir + "ml-100k/u.data"))
 
 # - - - See the data - - - 
