@@ -9,6 +9,7 @@ def parseLine(line):
     numPatients = int(fields[6])
     return (ages, numPatients)
 
+# Adjust srcdir to your local directory. 
 srcdir = '/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/code/course410-2024/02-ApacheSpark/ex2/'
 rdd = sc.textFile((srcdir + "data/InfectiousDisease.csv")) # CSV: comma separated values
 first_5lines = rdd.take(5)

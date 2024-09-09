@@ -7,6 +7,7 @@ sc = SparkContext(conf = conf)
 import os
 os.getcwd()
 
+# Adjust srcdir to your local directory. 
 srcdir = '/Users/Shinhoo/Teaching/410-BigdataDisbributedProcessingSystem/code/course410/02-ApacheSpark/ex1/'
 # srcdir = '/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/code/course410-2024/02-ApacheSpark/ex1/'
 rdd = sc.textFile((srcdir + "ml-100k/u.data"))

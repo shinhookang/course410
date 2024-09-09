@@ -9,6 +9,7 @@ def parseLine(line):
     temperature = float(fields[2])
     return (stationID, temperature)
 
+# Adjust srcdir to your local directory. 
 srcdir = '/Users/pepc/Teaching/410-BigdataDistributedProcessingSystem/code/course410-2024/02-ApacheSpark/ex3/'
 rdd = sc.textFile((srcdir + "data/OBS_AWS_TIM_20240909161730.csv")) # CSV: comma separated values
 first_5lines = rdd.take(5)
