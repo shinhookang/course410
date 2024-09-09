@@ -116,8 +116,7 @@ Spark shell is ready.
 
 
 ### Basic Examples 
-
-Try to run five examples for PySpark.
+Try the following five examples.
 ```bash
 cd course410/02-ApacheSpark
 spark-submit ./ex1/rating.py
