@@ -27,12 +27,12 @@ When PySpark is initialized, it launches a Java Virtual Machine (JVM) process to
 
 ### Windows Subsystem for LINUX (WSL2)
 
-PySpark was not installed correctly using `pip`.
+Try to install PySpark using `pip`.
 ```bash
 pip install pyspark
 ```
 
-Instead, we will use the pre-built version of PySpark.
+If this approach does not work, we can alternatively use the pre-built version of PySpark.
 
 
 Make sure `JAVA`, `SCALA`, and `py4j` are installed. 
