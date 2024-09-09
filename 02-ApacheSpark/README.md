@@ -114,6 +114,20 @@ Spark shell is ready.
 
 <img src="./figure/pyspark-ss.png" alt="Logo" height="300"/>
 
+
+### Basic Examples 
+
+Try to run five examples for PySpark.
+```bash
+cd course410/02-ApacheSpark
+spark-submit ./ex1/rating.py
+spark-submit ./ex2/disease-by-age.py 
+spark-submit ./ex3/find-max-temperatures.py
+spark-submit ./ex4/word-uppercase-map.py 
+spark-submit ./ex4/word-split-flatMap.py
+spark-submit ./ex5/word-count.py
+```
+
 ## Quickstart 
 
 Use Apache Spark examples.
