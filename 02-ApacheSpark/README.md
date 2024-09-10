@@ -127,6 +127,21 @@ spark-submit ./ex4/word-split-flatMap.py
 spark-submit ./ex5/word-count.py
 ```
 
+### Advanced Examples 
+Try the following SQL examples.
+```bash
+cd course410/02-ApacheSpark/
+spark-submit ./SQL/ex1/read-data.py
+spark-submit ./SQL/ex2/analyze-data.py
+spark-submit ./SQL/ex2/use-agg.py
+spark-submit ./SQL/ex3/write-data.py
+spark-submit ./SQL/ex4/sql-people.py
+spark-submit ./SQL/ex4/sql-aws.py
+spark-submit ./SQL/ex4/sql-aws-globalview.py
+spark-submit ./SQL/ex4/sql-aws-mintemp.py
+spark-submit ./SQL/ex4/sql-aws-mintemp-udf.py
+```
+
 ## Quickstart 
 
 Use Apache Spark examples.
