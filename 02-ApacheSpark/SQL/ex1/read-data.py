@@ -5,7 +5,8 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("ReadJSONExample").getOrCreate()
 
 # Read data from a JSON file into a DataFrame
-srcdir = './SQL/ex1/'
+#srcdir = './SQL/ex1/'
+srcdir = './'
 df = spark.read.option("multiline", "true").json(srcdir+"data/file.json")
 
 # Show the first few rows of the DataFrame

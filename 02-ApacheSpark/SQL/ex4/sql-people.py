@@ -19,7 +19,7 @@ df_people.show()
 df_people.createOrReplaceTempView("people")
 
 # Run SQL queries on the DataFrame via the temporary view
-result = spark.sql("SELECT name, age FROM people WHERE age > 30")
+result = spark.sql("SELECT name, age FROM people WHERE age > 35")
 result.show()
 
 result = spark.sql("SELECT name, age FROM people WHERE age < 30")

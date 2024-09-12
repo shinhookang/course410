@@ -20,7 +20,8 @@ schema = StructType([ \
                      StructField("temperature", FloatType(), True)])
 
 # Read the data as DataFrame 
-srcdir = './SQL/ex4/'
+# srcdir = './SQL/ex4/'
+srcdir = './'
 df = spark.read.schema(schema).csv(srcdir+"data/OBS_AWS_TIM_20240909161730.csv")
 df.printSchema()
 df.show()

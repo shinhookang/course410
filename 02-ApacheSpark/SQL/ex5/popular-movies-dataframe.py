@@ -14,7 +14,8 @@ schema = StructType([ \
 
 # Load up movie data as dataframe
 # Adjust srcdir to your local directory. 
-srcdir = './ex6/'
+# srcdir = './ex6/'
+srcdir = './'
 df = spark.read.option("sep", "\t").schema(schema).csv(srcdir + "ml-100k/u.data")
 
 # Count how many people have written reviews each movie.
@@ -25,7 +26,7 @@ df_itemID.show()
 topviewed_itemIDs = df_itemID.orderBy(func.desc("count"))
 
 # Grab the top 10
-topviewed_itemIDs.show(20)
+topviewed_itemIDs.show(10)
 
 
 # Repalce itemID with movie name

@@ -17,13 +17,14 @@ def mapper(line):
                datetime=str(fields[1]), \
                temperature=float(fields[2])) 
 
-srcdir = './SQL/ex4/'
+# srcdir = './SQL/ex4/'
+srcdir = './'
 rdd = spark.sparkContext.textFile(srcdir+"data/OBS_AWS_TIM_20240909161730.csv")
 first_5lines = rdd.take(5)
 for line in first_5lines:
     print(line)
 
-rdd.foreach(lambda line: print(line))
+# rdd.foreach(lambda line: print(line))
 
 rdd_aws = rdd.map(mapper)
 first_5lines = rdd_aws.take(357)

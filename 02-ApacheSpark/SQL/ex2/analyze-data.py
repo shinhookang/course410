@@ -6,7 +6,8 @@ from pyspark.sql.functions import avg, max, min, count
 spark = SparkSession.builder.appName("DataAnalysisExample").getOrCreate()
 
 # Read data from a CSV file into a DataFrame
-srcdir = './SQL/ex2/'
+# srcdir = './SQL/ex2/'
+srcdir = './'
 df = spark.read.csv(srcdir+"data/employees.csv", header=True, inferSchema=True) #infers datatype
 
 # Show the first few rows of the DataFrame

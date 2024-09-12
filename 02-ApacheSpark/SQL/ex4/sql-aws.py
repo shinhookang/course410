@@ -3,7 +3,7 @@ from pyspark.sql import Row
 # Row class, 
 #  which allows you to create structured data objects (rows) that resemble records in a DataFrame.
 #  A Row is essentially a way to create a data structure similar to a tuple
-#  but with named fields, making it easier to work with and refer to specific columns by name.
+#  but with name fields, making it easier to work with and refer to specific columns by name.
 
 # Create a SparkSession
 spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
@@ -17,16 +17,15 @@ def mapper(line):
                datetime=str(fields[1]), \
                temperature=float(fields[2])) 
 
-srcdir = './SQL/ex4/'
+# srcdir = './SQL/ex4/'
+srcdir = './'
 rdd = spark.sparkContext.textFile(srcdir+"data/OBS_AWS_TIM_20240909161730.csv")
 first_5lines = rdd.take(5)
 for line in first_5lines:
     print(line)
 
-rdd.foreach(lambda line: print(line))
-
 rdd_aws = rdd.map(mapper)
-first_5lines = rdd_aws.take(357)
+first_5lines = rdd_aws.take(5)
 for line in first_5lines:
     print(line)
 #rdd_aws.foreach(lambda line: print(line))

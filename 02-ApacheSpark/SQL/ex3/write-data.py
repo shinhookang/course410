@@ -16,7 +16,8 @@ df = spark.createDataFrame(data, ["name", "age", "department", "salary"])
 df.show()
 
 # Write the DataFrame to different formats
-srcdir = './SQL/ex3/'
+# srcdir = './SQL/ex3/'
+srcdir = './'
 
 # 1. Write to CSV format
 # Note that Spark writes data in a distributed manner. 
@@ -35,5 +36,4 @@ df.coalesce(1).write.json(srcdir+"data-json-single", mode="overwrite")
 df.write.parquet(srcdir+"data-parquet", mode="overwrite")
 df.coalesce(1).write.parquet(srcdir+"data-parquet-single", mode="overwrite")
 
-
-df.rdd()
+ 

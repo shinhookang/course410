@@ -12,3 +12,5 @@ df = spark.createDataFrame(data, ["name", "age", "salary"])
 # agg: apply aggregate functions on the selected columns
 df.agg(sum("salary").alias("total_salary"), avg("age").alias("average_age")).show()
 
+df.agg(avg("salary").alias("avg_salary"), avg("age").alias("average_age")).show()
+
