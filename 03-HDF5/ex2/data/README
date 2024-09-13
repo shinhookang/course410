@@ -1,0 +1,23 @@
+Hand Signs 05 Dataset
+https://www.kaggle.com/datasets/shivamaggarwal513/dlai-hand-signs-05
+
+Dataset contains images of hand signs representing numbers 0 to 5 (both inclusive) and corresponding labels (6 classes). It can be used to train machine learning algorithms for image multi-class classification.
+
+. train.h5 (HDF5 file)
++-- train_set_x (HDF5 dataset)
+|   +-- 'numpy.ndarray' (1080, 64, 64, 3)
++-- train_set_y (HDF5 dataset)
+|   +-- 'numpy.ndarray' (1080,)
++-- list_classes (HDF5 dataset)
+|   +-- 'numpy.ndarray' (6,)
+
+. test.h5 (HDF5 file)
++-- test_set_x (HDF5 dataset)
+|   +-- 'numpy.ndarray' (120, 64, 64, 3)
++-- test_set_y (HDF5 dataset)
+|   +-- 'numpy.ndarray' (120,)
++-- list_classes (HDF5 dataset)
+|   +-- 'numpy.ndarray' (6,)
+
+* Size: Dataset has 1200 labelled samples of size 15MB. Training set has 1080 samples and test set has 120 samples.
+* Image Resolution: Images with height x width = 64 x 64 pixels and 3 channels (RGB).
