@@ -124,7 +124,6 @@ spark-submit ./ex2/disease-by-age.py
 spark-submit ./ex3/find-max-temperatures.py
 spark-submit ./ex4/word-uppercase-map.py 
 spark-submit ./ex4/word-split-flatMap.py
-spark-submit ./ex5/word-count.py
 ```
 
 ### Advanced Examples 

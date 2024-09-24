@@ -18,7 +18,7 @@ temperature = dataset.variables['temperature']
 print(temperature[:])  # Print all temperature data
 
 # Access a specific time slice
-print(temperature[0, :, :])  # Access data for the first time index
+print(temperature[0, :])  # Access data for the first time index
 
 # Close the dataset
 dataset.close()
