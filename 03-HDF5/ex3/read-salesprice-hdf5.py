@@ -11,7 +11,7 @@ with h5py.File(ifile, 'r') as f:
     print(list(f.keys()))  # Output: ['date', 'products']
 
     cdate = f['date']
-    print(cdate[:]) # b stands for bytes object
+    print('date = \n', cdate[:]) # b stands for bytes object
     
     # Read the attributes
     for attr_name, attr_value in f.attrs.items():
