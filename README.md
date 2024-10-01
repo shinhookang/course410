@@ -13,7 +13,7 @@
     <li> <a href="./02-ApacheSpark/">Apache Spark</a> </li>
     <li> <a href="./03-HDF5/">HDF5</a> </li>
     <li> <a href="./04-NetCDF4/">NetCDF4</a> </li>
-    <li> <a href="./05-OpenAPI/">NetCDF4</a> </li>
+    <li> <a href="./05-OpenAPI/">OpenAPI</a> </li>
   </ol>
 </details>
 
