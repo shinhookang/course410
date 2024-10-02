@@ -4,10 +4,11 @@ DEAL_YMD= '202407'
 # Read service key content from a file
 # Modify 'mykey.txt' for your API key
 with open('mykey.txt', 'r') as file:
-    service_key = file.read()
+    service_key = file.read().split()[0]
+    #service_key = file.read()
 
 url = \
-'https://apis.data.go.kr/1613000/RTMSDataSvcAptRent/getRTMSDataSvcAptRent?serviceKey='+service_key \
+'http://apis.data.go.kr/1613000/RTMSDataSvcAptRent/getRTMSDataSvcAptRent?serviceKey='+service_key \
     +'&LAWD_CD='+LAWD_CD \
     +'&DEAL_YMD='+DEAL_YMD
 response = requests.get(url)
