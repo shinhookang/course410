@@ -1,6 +1,23 @@
 # OpenMP
 
-Date: October 28th, 2024
+Date: November 2nd, 2024
+
+## Mac
+
+Install required packages `brew install llvm libomp`
+
+Modify `.zshrc` as follows: 
+```bash
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+```
+
+Compile programs using 
+```bash 
+clang -fopenmp ex1.c -o ex1
+```
+
 
 ## Windows Subsystems for Linux
 
