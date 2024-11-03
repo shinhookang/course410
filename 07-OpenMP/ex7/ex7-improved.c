@@ -3,7 +3,7 @@
 
 int main() {
     int i;
-    int n = 100000;
+    int n = 10000;
     int a[n], b[n], c[n], d[n];
     int nthreads=10;
 
@@ -15,8 +15,6 @@ int main() {
     {
         // Determine lower and uppper thread bounds 
         int nelem_p = n/nthreads;
-        // printf("nelem_per_thread = %d\n", nelem_p);
-
         int tid = omp_get_thread_num(); // thread id
         int ltb = nelem_p*tid; // lower thread bound
         int utb = nelem_p*(tid+1); // upper thread bound
@@ -31,17 +29,13 @@ int main() {
             b[i] = i * 2;
             //printf("Thread %d: a[%d] = %d, b[%d] = %d \n", tid, i, a[i], i, b[i]);
         }   
-        
         //printf("\n");
-
         // The second loop
         for (i = ltb; i < utb; i++) {
             c[i] = a[i] + b[i];
             //printf("Thread %d: c[%d] = %d\n", tid, i, c[i]);
         }
-
         //printf("\n");
-
         // The third loop
         for (i = ltb; i < utb; i++) {
             d[i] = a[i] * b[i];
