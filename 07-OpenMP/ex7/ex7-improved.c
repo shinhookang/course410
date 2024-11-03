@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <omp.h>
-
+// check the number of CPUs in MAC: sysctl -n hw.ncpu
+// check the number of CPUs in LINUX: lscpu 
 int main() {
-    int i;
-    int n = 10000;
-    int a[n], b[n], c[n], d[n];
-    int nthreads=10;
+    long int i;
+    long int n = 100000;
+    long int a[n], b[n], c[n], d[n];
+    int nthreads=16;
 
     omp_set_num_threads(nthreads);
 
@@ -14,14 +15,14 @@ int main() {
     #pragma omp parallel
     {
         // Determine lower and uppper thread bounds 
-        int nelem_p = n/nthreads;
+        long int nelem_p = n/nthreads;
         int tid = omp_get_thread_num(); // thread id
-        int ltb = nelem_p*tid; // lower thread bound
-        int utb = nelem_p*(tid+1); // upper thread bound
+        long int ltb = nelem_p*tid; // lower thread bound
+        long int utb = nelem_p*(tid+1); // upper thread bound
         if (tid == nthreads-1){
             utb = n;
         }
-        printf("Thread %d: ltb = %d, utb = %d \n", tid, ltb, utb);
+        //printf("Thread %d: ltb = %ld, utb = %ld \n", tid, ltb, utb);
 
         // The first loop
         for (i = ltb; i < utb; i++) {
@@ -46,7 +47,7 @@ int main() {
 
     double end_time = omp_get_wtime();
     double run_time = end_time - start_time;
-    printf("Time taken: %.4f seconds\n", run_time);
+    printf("Time taken: %.6f seconds\n", run_time);
 
     printf("Nthreads = %d\n",nthreads);
 
