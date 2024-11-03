@@ -5,7 +5,7 @@ int main() {
     long int i;
     long int n = 100000;
     long int a[n], b[n], c[n], d[n];
-    int nthreads=16;
+    int nthreads=22;
 
     omp_set_num_threads(nthreads);
 
