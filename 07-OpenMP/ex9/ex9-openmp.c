@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <omp.h>
 // - - - NOT READY YET - - - 
 void prefix_scan(int *input, int *output, int n) {
@@ -8,6 +9,10 @@ void prefix_scan(int *input, int *output, int n) {
 
         // Determine lower and uppper thread bounds 
         int nthreads = omp_get_num_threads(); // nthreads
+        if (nthreads>n){
+            printf("[%d]threads should be smaller than %d\n",nthreads,n);
+            exit(0);
+        }
         int tid = omp_get_thread_num(); // thread id
         long int nelem_p = n/nthreads;    
         long int ltb = nelem_p*tid; // lower thread bound
@@ -15,16 +20,18 @@ void prefix_scan(int *input, int *output, int n) {
         if (tid == nthreads-1){
             utb = n;
         }
-
+        printf("Thread %d: ltb = %ld, utb = %ld \n", tid, ltb, utb);
+        
         if (tid == 0) {
             printf("Nthreads: %d \n", omp_get_num_threads());
         }
 
-        long int *offset = (long int *)malloc(nthreads * sizeof(long int));
+        //long int *offset = (long int *)malloc(nthreads * sizeof(long int));
             
 
         // Step 1: Copy the input array into the output array as the initial state
-        for (int i = ltb; i < utb; i++) {
+        output[ltb] = 0.;
+        for (int i = ltb+1; i < utb; i++) {
             output[i] = input[i];
         }
 
@@ -35,26 +42,34 @@ void prefix_scan(int *input, int *output, int n) {
 
         // Step 3: Compute offset for each thread at master thread
         #pragma omp barrier
+        // if (tid==2){
+        //     for (int i=ltb; i<utb; i++){
+        //         printf("output[%d]: %d \n",i, output[i]);
+        //     }
+            
+        // }
         if (tid == 0){
             printf("offset: \n");
-            offset[0] = 0.;
+            output[0] = input[0];
+            printf("offset[%d]: %d \n",0, output[0]);
             for (int i=1; i<nthreads; i++){
 
-                long int _ltb = nelem_p*i; // lower thread bound
-                long int _utb = nelem_p*(i+1); // upper thread bound
+                long int _ltb = nelem_p*(i-1); // lower bound for previous thread
+                long int _utb = nelem_p*(i);   // upper bound for previous thread
 
-                offset[i] = output[_utb-1];
-                printf("offset[%d]: %ld \n",i, offset[i]);
+                // output[_ltb]: offset[i-1]
+                // output[_utb]: offset[i]
+                output[_utb] = output[_ltb] + output[_utb-1] + input[_utb];
+                printf("offset[%d]: %d \n",i, output[_utb]);
             }
-            // for (int i = 0; i < nthreads; i++) {
-            //     output[i] = output[i - 1] + input[i];
-            //     output[i] = output[i - 1] + input[i];
-            // }    
+              
         }
-        // for (int i = ltb; i < utb; i++) {
-        //     output[i] = output[i - 1] + input[i];
-        // }
+        #pragma omp barrier
 
+        // Step 4: correct output by adding offsets for each thread
+        for (int i = ltb+1; i < utb; i++) {
+            output[i] += output[ltb];
+        }
     }
         
 
