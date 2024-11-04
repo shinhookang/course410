@@ -16,6 +16,7 @@
     <li> <a href="./05-OpenAPI/">OpenAPI</a> </li>
     <li> <a href="./06-ParallelComputing/">ParallelComputing</a> </li>
     <li> <a href="./07-OpenMP/">OpenMP</a> </li>
+    <li> <a href="./08-MPI/">MPI</a> </li>
   </ol>
 </details>
 
