@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
-// - - - NOT READY YET - - - 
 void prefix_scan(int *input, int *output, int n) {
     
     #pragma omp parallel
