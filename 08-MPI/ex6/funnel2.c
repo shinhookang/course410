@@ -25,16 +25,16 @@ int main(int argc, char *argv[]) {
 
         // Only the main thread (thread 0) makes MPI calls
         if (thread_id == 0) {
-            printf("Process %d, Thread %d: Performing MPI call\n", rank, thread_id);
+            printf("(Process %d, Thread %d): Performing MPI call\n", rank, thread_id);
             // Example MPI call
             int data = rank;
             MPI_Bcast(&data, 1, MPI_INT, 0, MPI_COMM_WORLD);
-            printf("Process %d received data %d\n", rank, data);
+            printf("(Process %d, Thread %d) received data %d\n", rank, thread_id, data);
         }
 
         // All threads can perform computation
         #pragma omp barrier
-        printf("Process %d, Thread %d: Performing computation\n", rank, thread_id);
+        printf("(Process %d, Thread %d): Performing computation\n", rank, thread_id);
     }
 
     MPI_Finalize();  // Finalize MPI
