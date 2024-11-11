@@ -1,16 +1,14 @@
 #include <mpi.h>
 #include <omp.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char** argv) {
     int provided;
-
-    // Initialize MPI with serialized thread support
     MPI_Init_thread(&argc, &argv, MPI_THREAD_SERIALIZED, &provided);
 
-    // Check the provided thread support level
     if (provided < MPI_THREAD_SERIALIZED) {
-        printf("Error: MPI does not support MPI_THREAD_SERIALIZED.\n");
+        printf("MPI does not support MPI_THREAD_SERIALIZED level!\n");
         MPI_Abort(MPI_COMM_WORLD, 1);
     }
 
@@ -18,26 +16,37 @@ int main(int argc, char *argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    // Parallel region with OpenMP
+    // Define an OpenMP parallel region
     #pragma omp parallel
     {
-        int tid = omp_get_thread_num();
+        int thread_id = omp_get_thread_num();
+        int num_threads = omp_get_num_threads();
 
-        // Each thread tries to make an MPI call, but only one at a time
-        #pragma omp critical  // Ensures only one thread enters this section at a time
+        #pragma omp single
         {
-            printf("(Proc %d, Thread %d): Performing MPI call\n", rank, tid);
-            
-            int data = rank * 10 + tid;
-            // Example MPI call (broadcasting data)
-            MPI_Bcast(&data, 1, MPI_INT, 0, MPI_COMM_WORLD);
-            printf("(Proc %d, Thread %d) received data %d\n", rank, tid, data);
+            printf("MPI Rank %d out of %d processes, running %d OpenMP threads\n", rank, size, num_threads);
         }
 
-        // Other work that does not involve MPI
-        printf("(Proc %d, Thread %d): Performing computation\n", rank, tid);
+        // Only the master thread performs MPI communication
+        if (thread_id == 0) {
+            int data = rank * 100;
+            int recv_data;
+
+            // Exchange data with the next rank in a ring topology
+            int next_rank = (rank + 1) % size;
+            int prev_rank = (rank - 1 + size) % size;
+
+            MPI_Send(&data, 1, MPI_INT, next_rank, 0, MPI_COMM_WORLD);
+            MPI_Recv(&recv_data, 1, MPI_INT, prev_rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+            printf("MPI Rank %d: Sent %d to rank %d, received %d from rank %d\n",
+                   rank, data, next_rank, recv_data, prev_rank);
+        }
+
+        // Parallel work for all threads
+        printf("Rank %d, thread %d is doing independent work\n", rank, thread_id);
     }
 
-    MPI_Finalize();  // Finalize MPI
+    MPI_Finalize();
     return 0;
 }
