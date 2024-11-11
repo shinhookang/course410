@@ -22,29 +22,27 @@ int main(int argc, char** argv) {
         int thread_id = omp_get_thread_num();
         int num_threads = omp_get_num_threads();
 
+	// may be needed before the omp single construct that has the MPI call(s)
+        #pragma omp barrier
         #pragma omp single
         {
-            printf("MPI Rank %d out of %d processes, running %d OpenMP threads\n", rank, size, num_threads);
-        }
-
-        // Only the master thread performs MPI communication
-        if (thread_id == 0) {
-            int data = rank * 100;
+            int send_data = rank * 100;
             int recv_data;
 
             // Exchange data with the next rank in a ring topology
-            int next_rank = (rank + 1) % size;
-            int prev_rank = (rank - 1 + size) % size;
+            int target = (rank + 1) % size;
+            int source = (rank - 1 + size) % size;
 
-            MPI_Send(&data, 1, MPI_INT, next_rank, 0, MPI_COMM_WORLD);
-            MPI_Recv(&recv_data, 1, MPI_INT, prev_rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Send(&send_data, 1, MPI_INT, target, 0, MPI_COMM_WORLD);
+            MPI_Recv(&recv_data, 1, MPI_INT, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-            printf("MPI Rank %d: Sent %d to rank %d, received %d from rank %d\n",
-                   rank, data, next_rank, recv_data, prev_rank);
+            printf("(Proc %d, Thread %d): Sent %d to (Proc %d), received %d from (Proc %d)\n",
+                   rank, thread_id, send_data, target, recv_data, source);
+
         }
 
         // Parallel work for all threads
-        printf("Rank %d, thread %d is doing independent work\n", rank, thread_id);
+        printf("(Proc %d, Thread %d) is doing independent work\n", rank, thread_id);
     }
 
     MPI_Finalize();
