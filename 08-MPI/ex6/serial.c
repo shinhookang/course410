@@ -2,54 +2,42 @@
 #include <omp.h>
 #include <stdio.h>
 
-int main(int argc, char* argv[]) {
-    int provided, rank, size;
+int main(int argc, char *argv[]) {
+    int provided;
 
-    // Initialize MPI with threading support
+    // Initialize MPI with serialized thread support
     MPI_Init_thread(&argc, &argv, MPI_THREAD_SERIALIZED, &provided);
-    printf(MPI_THREAD_SERIALIZED);
-    printf(provided);
 
+    // Check the provided thread support level
     if (provided < MPI_THREAD_SERIALIZED) {
-        printf("MPI does not provide required threading level\n");
+        printf("Error: MPI does not support MPI_THREAD_SERIALIZED.\n");
         MPI_Abort(MPI_COMM_WORLD, 1);
     }
 
+    int rank, size;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    if (size < 2) {
-        printf("This example requires at least 2 MPI processes\n");
-        MPI_Abort(MPI_COMM_WORLD, 1);
-    }
-
-    int data;
-    if (rank == 0) {
-        data = 42; // Example data to send
-    }
-
+    // Parallel region with OpenMP
     #pragma omp parallel
     {
-        int thread_id = omp_get_thread_num();
-        int num_threads = omp_get_num_threads();
+        int tid = omp_get_thread_num();
 
-        // Only the master thread (thread 0) performs MPI calls
-        if (thread_id == 0) {
-            if (rank == 0) {
-                MPI_Send(&data, 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
-                printf("MPI Process %d, Thread %d sent data %d\n", rank, thread_id, data);
-            } else if (rank == 1) {
-                MPI_Recv(&data, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                printf("MPI Process %d, Thread %d received data %d\n", rank, thread_id, data);
-            }
+        // Each thread tries to make an MPI call, but only one at a time
+        #pragma omp critical  // Ensures only one thread enters this section at a time
+        {
+            printf("(Proc %d, Thread %d): Performing MPI call\n", rank, tid);
+            
+            int data = rank * 10 + tid;
+            // Example MPI call (broadcasting data)
+            MPI_Bcast(&data, 1, MPI_INT, 0, MPI_COMM_WORLD);
+            printf("(Proc %d, Thread %d) received data %d\n", rank, tid, data);
         }
 
-        // All threads (including master) can do additional work here
-        #pragma omp barrier
-        printf("MPI Process %d, Thread %d is performing computation\n", rank, thread_id);
+        // Other work that does not involve MPI
+        printf("(Proc %d, Thread %d): Performing computation\n", rank, tid);
     }
 
-    MPI_Finalize();
+    MPI_Finalize();  // Finalize MPI
     return 0;
 }
-
