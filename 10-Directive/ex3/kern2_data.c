@@ -11,10 +11,10 @@ int main(int argc, char *argv[]){
 
   struct timespec tstart; 
 
-  #pragma acc data create(a[0:nsize],b[0:nsize],c[0:nsize])
+  #pragma omp target data map(to:a[0:nsize],b[0:nsize],c[0:nsize])
   { 
 
-  #pragma acc parallel loop present(a[0:nsize],b[0:nsize])
+  #pragma omp target teams distribute parallel for simd
   for (int i=0; i<nsize; i++){
     a[i] = 1.0;
     b[i] = 2.0; 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
   {
     cpu_timer_start(&tstart);
 
-    #pragma acc parallel loop present(a[0:nsize],b[0:nsize],c[0:nsize])
+    #pragma omp target teams distribute parallel for simd
     for (int i=0; i<nsize; i++){
       c[i] = a[i] + scalar * b[i]; 
     }
