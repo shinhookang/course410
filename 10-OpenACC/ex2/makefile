@@ -19,7 +19,6 @@ clean:
 	rm -f timer.o
 
 run:
-	@echo 'Current OMP_NUM_THREADS=${OMP_NUM_THREADS}'
 	./${TARGET}
 	./${TARGET}_par
 	./${TARGET}_serial
