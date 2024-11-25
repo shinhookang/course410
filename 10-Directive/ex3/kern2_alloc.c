@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <openacc.h>
+#include <omp.h>
 #include "timer.h"
 
 int main(int argc, char *argv[]){
