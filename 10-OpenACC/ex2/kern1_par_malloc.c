@@ -5,9 +5,9 @@
 int main(int argc, char *argv[]){
 
   int nsize = 20000000, ntimes=16;
-  double *a = add_malloc(nsize * sizeof(double));
-  double *b = add_malloc(nsize * sizeof(double));
-  double *c = add_malloc(nsize * sizeof(double));
+  double *a = acc_malloc(nsize * sizeof(double));
+  double *b = acc_malloc(nsize * sizeof(double));
+  double *c = acc_malloc(nsize * sizeof(double));
 
   struct timespec tstart; 
 
