@@ -34,9 +34,9 @@ int main(int argc, char *argv[]){
   }
   printf("Average runtime is %lf msecs\n", time_sum/ntimes);
 
-  omp_target__free(a,omp_get_default_device());
-  omp_target__free(b,omp_get_default_device());
-  omp_target__free(c,omp_get_default_device());
+  omp_target_free(a,omp_get_default_device());
+  omp_target_free(b,omp_get_default_device());
+  omp_target_free(c,omp_get_default_device());
   
   return(0); 
 
