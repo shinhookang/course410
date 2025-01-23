@@ -85,8 +85,16 @@ Activate the virtual environment. `source .venv/bin/activate`
 Deactivate the virtual environment. `deactivate`
 
 
+# Create a virtual environment with pyenv
 
+Install PyENV. `brew install pyenv`
 
-<!-- ## Reference 
+Check PyENV version. `pyenv --version`
 
-[Setting up a Single Node Cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Standalone_Operation) -->
+Check available Python version. `pyenv install --list`
+
+Install python 3.11.0 by `pyenv install 3.11.0`
+
+(Uninstall python 3.11.0 by `pyenv uninstall 3.11.0`)
+
+<!-- ## Reference [PyEnv](https://github.com/pyenv/pyenv) -->
