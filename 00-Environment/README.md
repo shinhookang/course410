@@ -87,14 +87,59 @@ Deactivate the virtual environment. `deactivate`
 
 # Create a virtual environment with pyenv
 
-Install PyENV. `brew install pyenv`
-
-Check PyENV version. `pyenv --version`
+1. Install `Pyenv` and `python`
+```bash
+brew update
+brew install pyenv
+```
 
 Check available Python version. `pyenv install --list`
 
 Install python 3.11.0 by `pyenv install 3.11.0`
 
 (Uninstall python 3.11.0 by `pyenv uninstall 3.11.0`)
+
+2. Set up your shell environment for Pyenv
+```bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init - zsh)"' >> ~/.zshrc
+```
+
+Run `source ~/.zshrc`
+
+See **shims** in PATH variable.
+```bash
+$> echo $PATH
+/Users/Shinhoo/.pyenv/shims:/
+```
+
+3. Use installed Python
+
+Check list of python versions `pyenv versions`
+
+Set python 3.11 locally by `pyenv local 3.11.0`
+```bash
+$> pyenv prefix
+/Users/Shinhoo/.pyenv/versions/3.11.0
+```
+
+Undo `pyenv local --unset`
+```bash
+$> pyenv prefix
+/opt/homebrew
+```
+
+Set python 3.11 globally by `pyenv global 3.11.0`
+```bash
+$> pyenv prefix
+/Users/Shinhoo/.pyenv/versions/3.11.0
+```
+
+Undo `pyenv global system`
+```bash
+$> pyenv prefix
+/opt/homebrew
+```
 
 <!-- ## Reference [PyEnv](https://github.com/pyenv/pyenv) -->
