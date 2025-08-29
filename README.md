@@ -1,9 +1,9 @@
-# Course410 (2024 Fall)
+# Course410 (2025 Fall)
 ## Bigdata Distributed Processing System
 
 * Instructor: Shinhoo Kang 
-* Class Time: Wed. (10:00-10:50) in-person 
-* Office Hours: Tue. (11:00-11:50)/Wed. (11:00-11:50; 13:00-13:50) 
+* Class Time: Wed. (11:00-11:50) in-person 
+* Office Hours: Mon. (13:00-14:00)/Wed. (13:00-14:00) 
 
 <details open>
   <summary>  <b>Table of Contents</b> </summary>
