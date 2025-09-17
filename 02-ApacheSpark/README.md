@@ -29,7 +29,7 @@ When PySpark is initialized, it launches a Java Virtual Machine (JVM) process to
 
 Try to install PySpark using `pip`.
 ```bash
-pip install pyspark
+pip install pyspark==3.5.2
 ```
 
 If this approach does not work, we can alternatively use the pre-built version of PySpark.
