@@ -14,9 +14,13 @@
     <li> <a href="./03-HDF5/">HDF5</a> </li>
     <li> <a href="./04-NetCDF4/">NetCDF4</a> </li>
     <li> <a href="./05-OpenAPI/">OpenAPI</a> </li>
-    <li> <a href="./06-ParallelComputing/">ParallelComputing</a> </li>
-    <li> <a href="./07-OpenMP/">OpenMP</a> </li>
-    <li> <a href="./08-MPI/">MPI</a> </li>
+    <li> <a href="./06-SatelliteData/">SatelliteData</a> </li>
+    <li> <a href="./07-ParallelComputing/">ParallelComputing</a> </li>
+    <li> <a href="./08-OpenMP/">OpenMP</a> </li>
+    <li> <a href="./09-MPI/">MPI</a> </li>
+    <li> <a href="./10-RAPIDS/">RAPIDS</a> </li>
+    <li> <a href="./11-Directive/">Directive</a> </li>
+    <li> <a href="./12-JAX/">JAX</a> </li>
   </ol>
 </details>
 
