@@ -24,9 +24,26 @@ ee.Initialize(project='<project ID>')
 ```
 
 3. Run ex.py
+
+## Jupyterlab examples
+
+Install and run `JupyterLab`
+```
+pip install jupyterlab
+jupyter lab
+```
+
+Install 
+```
+pip install rasterio localtileserver osmnx 
+```
    
 ## References
-* https://github.com/giswqs/geebook/tree/master   
+* https://github.com/giswqs/geebook/tree/master
+* https://github.com/gee-community/geemap/tree/master/examples
+* https://github.com/opengeos
+* https://pygis.io/docs/a_intro.html
+
 
 
 
