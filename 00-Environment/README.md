@@ -143,3 +143,23 @@ $> pyenv prefix
 ```
 
 <!-- ## Reference [PyEnv](https://github.com/pyenv/pyenv) -->
+
+# SSH setting
+
+## Enable SSH service
+```bash
+sudo apt update
+sudo apt install openssh-server
+sudo systemctl status ssh
+sudo systemctl enable ssh
+sudo ufw allow ssh
+```
+
+## Login to Server
+ssh <username>@<ip address>
+
+
+## Auto login 
+1. Generate an SSH key on the client machine (your local computer). 
+2. Add the public key to the server.
+
