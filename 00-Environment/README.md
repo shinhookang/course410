@@ -156,8 +156,9 @@ sudo ufw allow ssh
 ```
 
 ## Login to Server
+```bash
 ssh <username>@<ip address>
-
+```
 
 ## Auto login 
 1. Generate an SSH key on the client machine (your local computer). 
