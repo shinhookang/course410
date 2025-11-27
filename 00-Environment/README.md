@@ -155,6 +155,9 @@ sudo systemctl enable ssh
 sudo ufw allow ssh
 ```
 
+For an old system, use `sudo service ssh restart`.
+
+
 ## Login to Server
 ```bash
 ssh <username>@<ip address>
@@ -164,3 +167,9 @@ ssh <username>@<ip address>
 1. Generate an SSH key on the client machine (your local computer). 
 2. Add the public key to the server.
 
+## Change port
+1. Modify `Port 22` to `Port <new port number>` in `/etc/ssh/sshd_config`.
+```
+sudo nano /etc/ssh/sshd_config
+```
+2. Restart `ssh`
