@@ -1,2 +1,5 @@
 # Secrets -- never commit API keys
 .env
+
+# macOS Finder metadata
+.DS_Store
