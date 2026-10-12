@@ -3,3 +3,8 @@
 
 # macOS Finder metadata
 .DS_Store
+
+# Python and Jupyter build artifacts
+__pycache__/
+.venv/
+.ipynb_checkpoints/
